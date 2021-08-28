@@ -15,6 +15,10 @@ public class Stage {
     //メソッド
     public void draw(Main main) {
         //　↑戻り値 返さないからvoid
+
+        ball.update(main);
+        paddle.update(main);
+
         ball.draw(main);
         paddle.draw(main);
 
