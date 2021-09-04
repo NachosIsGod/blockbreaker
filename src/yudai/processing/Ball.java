@@ -12,11 +12,11 @@ public class Ball {
     }
 
     public void update(Main main) {
-        x= x+movex;
-        y= y+movey;
+        x= x+ movex;
+        y= y+ movey;
 
-        if(500<x || x<0)movex= movex*-1;
-        if(500<y || y<0)movey= movey*-1;
+        if(500<x || x<0)movex= movex* -1;
+        if(500<y || y<0)movey= movey* -1;
 
     }
 }
