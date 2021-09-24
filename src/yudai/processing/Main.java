@@ -6,11 +6,6 @@ import sun.net.util.IPAddressUtil;
 public class Main extends PApplet {
     //public static PApplet pApplet;
 
-    /*
-    public Main(){
-        pApplet = this;
-    }
-     */
     Stage stage;
 
     @Override
@@ -23,7 +18,6 @@ public class Main extends PApplet {
         stage = new Stage();
 
         size(500,500);
-
     }
 
     @Override
@@ -31,7 +25,6 @@ public class Main extends PApplet {
         background(128);
         stage.draw(this);
     }
-
 
     public static void main(String[] args){
         PApplet.main(Main.class);

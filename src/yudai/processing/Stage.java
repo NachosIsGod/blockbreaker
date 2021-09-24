@@ -9,7 +9,6 @@ public class Stage {
         //コンストラクタ　newしたときに呼ばれる
         ball = new Ball();
         paddle = new Paddle();
-
     }
 
     //メソッド
@@ -22,5 +21,11 @@ public class Stage {
         ball.draw(main);
         paddle.draw(main);
 
+        if (ball.y + ball.size/2 > paddle.y - paddle.height/2 && ball.y - ball.size/2 < paddle.y + paddle.height/2){
+            if (ball.x + ball.size/2 > paddle.x - paddle.width/2 && ball.x - ball.size/2 < paddle.x + paddle.width/2) {
+                ball.moveY= ball.moveY* -1;
+                ball.y= ball.y+ ball.moveY/2;
+            }
+        }
     }
 }
