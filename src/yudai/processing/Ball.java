@@ -18,6 +18,5 @@ public class Ball {
 
         if(500<x || x<0)moveX= moveX* -1;
         if(500<y || y<0)moveY= moveY* -1;
-
     }
 }
