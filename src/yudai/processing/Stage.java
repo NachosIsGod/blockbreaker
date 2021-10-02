@@ -13,9 +13,9 @@ public class Stage {
         paddle = new Paddle();
         for(int i = 0; i < blocks.length/16; i++) {
             for(int j = 0; j < blocks.length/3; j++) {
-                blocks[i*16-16+j] = new Block();
-                blocks[i*16-16+j].bx = j *25 +5;
-                blocks[i*16-16+j].by = (i*16-16+j) /16*25 +5;
+                blocks[(i+1)*16-16+j] = new Block();
+                blocks[(i+1)*16-16+j].bx = j *30 +10;
+                blocks[(i+1)*16-16+j].by = ((i+1)*16-16+j) /16*25 +5;
             }
         }
     }
