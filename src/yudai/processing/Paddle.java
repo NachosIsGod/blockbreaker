@@ -1,7 +1,5 @@
 package yudai.processing;
 
-import processing.core.PApplet;
-
 public class Paddle {
     int px = 500/2;
     int py = 500-40;
@@ -15,10 +13,15 @@ public class Paddle {
     }
 
     public void update(Main main) {
+
     if(main.keyPressed){
         System.out.println(main.keyCode);
         if(main.keyCode == 39)px = px + 5;
         if(main.keyCode == 37)px = px - 5;
         }
+    }
+
+    boolean isHit(int x, int y, int s){
+        return y + s / 2 > py && y - s / 2 < py + ph && x + s / 2 > px && x - s / 2 < px + pw;
     }
 }

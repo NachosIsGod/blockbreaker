@@ -2,7 +2,7 @@ package yudai.processing;
 
 public class Ball {
     int x = 250;
-    int y = 50;
+    int y = 100;
     int moveX = 4;
     int moveY = 4;
     int size = 10;

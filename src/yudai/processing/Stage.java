@@ -34,9 +34,21 @@ public class Stage {
             blocks[i].draw(main);
         }
 
-        //パドルの当たり判定
-        if (ball.y + ball.size/2 > paddle.py && ball.y - ball.size/2 < paddle.py + paddle.ph && ball.x + ball.size/2 > paddle.px && ball.x - ball.size/2 < paddle.px + paddle.pw){
+        //パドルとボールの当たり判定
+        if(paddle.isHit(ball.x, ball.y, ball.size)){
+            //向きをかえる
             ball.moveY= ball.moveY* -1;
+        }
+
+        //ブロックとボールの当たり判定
+        for(int i = 0; i < blocks.length/16; i++) {
+            for(int j = 0; j < blocks.length/3; j++) {
+                if(!blocks[i*16+j].isHit(ball.x, ball.y, ball.size)){
+                    //向き変える
+                    System.out.println("当たった");
+                    ball.moveY= ball.moveY* -1;
+                }
+            }
         }
     }
 }
