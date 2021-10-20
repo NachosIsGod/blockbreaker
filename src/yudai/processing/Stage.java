@@ -1,54 +1,79 @@
 package yudai.processing;
 
+import processing.core.PApplet;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Stage {
-    Ball ball;
-    Paddle paddle;
-    Block[] blocks = new Block[16*3];
-    //↑クラス ↑オブジェクト
+    DrawObject ball;
+    List<DrawObject> drawableObject = new ArrayList<>();
 
-    public Stage(){
-
-        //コンストラクタ　newしたときに呼ばれる
+    public Stage(PApplet pApplet){
         ball = new Ball();
-        paddle = new Paddle();
-        for(int i = 0; i < blocks.length/16; i++) {
-            for(int j = 0; j < blocks.length/3; j++) {
-                blocks[i*16+j] = new Block();
-                blocks[i*16+j].bx = j *30 +25/2;
-                blocks[i*16+j].by = (i*16+j) /16*25 +5;
+        drawableObject.add(ball);
+
+        Paddle paddle = new Paddle();
+        drawableObject.add(paddle);
+
+        //ブロック個数計算
+        int width = pApplet.width;
+        int height = pApplet.height;
+
+        int bw = width;
+        int bh = height;
+        int bg = 5;
+
+        int n = width / (bg + bw); //横方向の数
+        int m = 3; //縦方向の数
+        int space = width - n * (bg + bw) + bg;
+
+        int startXPos = space/2;
+        int startYPos = bg;
+
+        for(int i = 0; i < m; i++) {//縦方向
+            startXPos = bg;
+            for(int j = 0; j < n; j++) {    //横方向
+                Block block = new Block(startXPos,startYPos);
+                block.x = j *30 +25/2;
+                block.y = (i*16+j) /16*25 +5;
+                startXPos = startXPos + (bw+bg);
+                drawableObject.add(block);
             }
+            startYPos = startYPos + (bh+bg);
         }
     }
 
-    //メソッド
-    public void draw(Main main) {
-        //　↑戻り値 返さないからvoid
+    public void update(PApplet pApplet) {
 
-        ball.update(main);
-        paddle.update(main);
-        //block.update(main);
 
-        ball.draw(main);
-        paddle.draw(main);
-        for(int i = 0; i < blocks.length; i++) {
-            blocks[i].draw(main);
-        }
+        for(int i = 0; i< drawableObject.size(); i++){
+            //全てのupdateを実行
+            DrawObject o = drawableObject.get(i);
+            o.update(pApplet);
 
-        //パドルとボールの当たり判定
-        if(paddle.isHit(ball.x, ball.y, ball.size)){
-            //向きをかえる
-            ball.moveY= ball.moveY* -1;
-        }
+            if(o instanceof Collision){
+                Collision collision = (Collision) o;
 
-        //ブロックとボールの当たり判定
-        for(int i = 0; i < blocks.length/16; i++) {
-            for(int j = 0; j < blocks.length/3; j++) {
-                if(!blocks[i*16+j].isHit(ball.x, ball.y, ball.size)){
-                    //向き変える
-                    System.out.println("当たった");
-                    ball.moveY= ball.moveY* -1;
+                //当たり判定
+                if(collision.isHit(ball.x, ball.y)){
+                    ball.onAction(o.x, o.y);
                 }
             }
+        }
+
+    }
+
+    //メソッド
+    public void draw(PApplet pApplet) {
+        //　↑戻り値 返さないからvoid
+
+        pApplet.background(128);
+
+        for(int i = 0; i < drawableObject.size(); i++) {
+            //全部のdrawを実行
+            DrawObject o = drawableObject.get(i);
+            o.draw(pApplet);
         }
     }
 }

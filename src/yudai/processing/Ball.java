@@ -1,22 +1,38 @@
 package yudai.processing;
 
-public class Ball {
-    int x = 250;
-    int y = 100;
-    int moveX = 4;
-    int moveY = 4;
+import processing.core.PApplet;
+
+public class Ball extends DrawObject {
+    int moveX;
+    int moveY;
     int size = 10;
 
-    public void draw(Main main){
-        main.strokeWeight(size);
-        main.point(x,y);
+    Ball() {
+        super(250, 50);
+        x = 250;
+        y = 50;
+        moveX = 4;
+        moveY = 4;
     }
 
-    public void update(Main main) {
+    @Override
+    public void update(PApplet pApplet) {
         x= x+ moveX;
         y= y+ moveY;
 
-        if(500<x || x<0)moveX= moveX* -1;
-        if(500<y || y<0)moveY= moveY* -1;
+        //端に当たる
+        if(500<x || x<0)moveX *= -1;
+        if(500<y || y<0)moveY *= -1;
+    }
+
+    @Override
+    public void draw(PApplet pApplet){
+        pApplet.strokeWeight(size);
+        pApplet.point(x,y);
+    }
+
+    @Override
+    public void onAction(int x, int y) {
+        this.moveY = this.moveX*-1;
     }
 }

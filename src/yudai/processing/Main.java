@@ -15,14 +15,12 @@ public class Main extends PApplet {
 
     @Override
     public void setup(){
-        stage = new Stage();
-
+        stage = new Stage(this);
         size(500,500);
     }
 
     @Override
     public void draw(){
-        background(128);
         stage.draw(this);
     }
 
