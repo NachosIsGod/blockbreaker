@@ -5,6 +5,7 @@ import processing.core.PApplet;
 import static processing.core.PConstants.RADIUS;
 
 public class Paddle extends DrawObject implements Collision{
+
     int width = 40;
     int height = 10;
 
