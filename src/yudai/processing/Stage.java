@@ -20,23 +20,23 @@ public class Stage {
         int width = pApplet.width;
         int height = pApplet.height;
 
-        int bw = width;
-        int bh = height;
-        int bg = 5;
+        int bw = Block.WIDTH;
+        int bh = Block.HEIGHT;
+        int bg = 5; //間のスペースの数
 
         int n = width / (bg + bw); //横方向の数
         int m = 3; //縦方向の数
-        int space = width - n * (bg + bw) + bg;
+        int space = width - n * (bg + bw) + bg; //あまりのスペース
 
         int startXPos = space/2;
         int startYPos = bg;
 
-        for(int i = 0; i < m; i++) {//縦方向
+        for(int i = 0; i < m; i++) {    //縦方向
             startXPos = bg;
             for(int j = 0; j < n; j++) {    //横方向
                 Block block = new Block(startXPos,startYPos);
-                block.x = j *30 +25/2;
-                block.y = (i*16+j) /16*25 +5;
+                block.x = startXPos;
+                block.y = startYPos;
                 startXPos = startXPos + (bw+bg);
                 drawableObject.add(block);
             }
@@ -45,8 +45,6 @@ public class Stage {
     }
 
     public void update(PApplet pApplet) {
-
-
         for(int i = 0; i< drawableObject.size(); i++){
             //全てのupdateを実行
             DrawObject o = drawableObject.get(i);
@@ -57,16 +55,16 @@ public class Stage {
 
                 //当たり判定
                 if(collision.isHit(ball.x, ball.y)){
+                    System.out.println("当たったぜ");
                     ball.onAction(o.x, o.y);
                 }
             }
         }
-
     }
 
     //メソッド
     public void draw(PApplet pApplet) {
-        //　↑戻り値 返さないからvoid
+        update(pApplet); //NEW
 
         pApplet.background(128);
 

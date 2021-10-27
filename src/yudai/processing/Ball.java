@@ -10,7 +10,7 @@ public class Ball extends DrawObject {
     Ball() {
         super(250, 50);
         x = 250;
-        y = 50;
+        y = 80;
         moveX = 4;
         moveY = 4;
     }
@@ -33,6 +33,6 @@ public class Ball extends DrawObject {
 
     @Override
     public void onAction(int x, int y) {
-        this.moveY = this.moveX*-1;
+        this.moveY = this.moveY*-1;
     }
 }

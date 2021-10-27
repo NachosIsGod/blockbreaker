@@ -11,15 +11,11 @@ public abstract class DrawObject {
         this.y = y;
     }
 
-
     public abstract void draw(PApplet pApplet);
 
     public void update(PApplet pApplet){
-
     }
 
     void onAction(int x, int y){
-
     }
-
 }

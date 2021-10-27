@@ -22,7 +22,7 @@ public class Paddle extends DrawObject implements Collision{
     @Override
     public void update(PApplet pApplet) {
         if(pApplet.keyPressed){
-            System.out.println(pApplet.keyCode);
+            System.out.println(pApplet.keyCode); //キー表示
             if(pApplet.keyCode == 39)x = x + 5;
             if(pApplet.keyCode == 37)x = x - 5;
         }
@@ -30,11 +30,10 @@ public class Paddle extends DrawObject implements Collision{
 
     @Override
     public boolean isHit(int x, int y){
-        return y/2 > y && y/2 < y+height && x/2 > x && x/ 2 < x+width;
+        return this.x<x && x<(this.x + width)&&this.y<y&&y<(this.y+height);
     }
 
     @Override
     public void onAction(int x, int y){
-
     }
 }
