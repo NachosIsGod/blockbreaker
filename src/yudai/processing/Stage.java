@@ -71,7 +71,12 @@ public class Stage {
         for(int i = 0; i < drawableObject.size(); i++) {
             //全部のdrawを実行
             DrawObject o = drawableObject.get(i);
-            o.draw(pApplet);
+            if( o instanceof Block){
+                Block block = (Block)o;
+                if(block.isVisible) block.draw(pApplet);
+            }else{
+                o.draw(pApplet);
+            }
         }
     }
 }

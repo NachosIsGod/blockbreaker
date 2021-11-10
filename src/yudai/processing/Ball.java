@@ -3,6 +3,7 @@ package yudai.processing;
 import processing.core.PApplet;
 
 public class Ball extends DrawObject {
+    int move;
     int moveX;
     int moveY;
     int size = 10;
@@ -11,8 +12,9 @@ public class Ball extends DrawObject {
         super(250, 50);
         x = 250;
         y = 80;
-        moveX = 4;
-        moveY = 4;
+        move = 3;
+        moveX = move;
+        moveY = move;
     }
 
     @Override

@@ -6,7 +6,7 @@ import static processing.core.PConstants.RADIUS;
 
 public class Paddle extends DrawObject implements Collision{
 
-    int width = 40;
+    int width = 100;
     int height = 10;
 
     public Paddle(){
@@ -22,7 +22,7 @@ public class Paddle extends DrawObject implements Collision{
     @Override
     public void update(PApplet pApplet) {
         if(pApplet.keyPressed){
-            System.out.println(pApplet.keyCode); //キー表示
+            //System.out.println(pApplet.keyCode); //キー表示
             if(pApplet.keyCode == 39)x = x + 5;
             if(pApplet.keyCode == 37)x = x - 5;
         }

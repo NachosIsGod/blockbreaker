@@ -15,12 +15,12 @@ public class Block extends DrawObject implements Collision{
     @Override
     public void draw(PApplet pApplet) {
         pApplet.strokeWeight(1);
-        if(isVisible) pApplet.rect(x, y, WIDTH, HEIGHT);
+        pApplet.rect(x, y, WIDTH, HEIGHT);
     }
 
     @Override
     public boolean isHit(int x, int y){
-        if(this.x<x && x<(this.x + WIDTH)&&this.y<y&&y<(this.y+HEIGHT)){
+        if(this.x<x && x<(this.x + WIDTH)&&this.y<y&&y<(this.y+HEIGHT) && isVisible){
             isVisible = false;
             return true;
         }
